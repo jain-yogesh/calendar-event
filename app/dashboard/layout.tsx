@@ -20,11 +20,16 @@ const getData = async (userId : string) => {
         },
         select: {
             userName: true,
+            grantId: true,
         }
     });
 
     if(!data?.userName){
         return redirect("/onboarding");
+    }
+
+    if(!data.grantId){
+        return redirect("/onboarding/grant-id")
     }
 
     return data;
@@ -34,7 +39,7 @@ const DashboardLayout = async ({children} : {children : ReactNode}) => {
     const session = await requireUser();
 
     const data = await getData(session.user?.id as string);
-    
+
   return (
     <>
         <div className="min-h-screen w-full grid md:grid-cols-[220px_1fr] lg:grid-cols-[280px_1fr]">
