@@ -50,3 +50,9 @@ export const onboardingSchema = z.object({
         message: "Username must contain only letters, numbers, and hyphens",
       }),
   });
+
+
+export const settingsSchema = z.object({
+    fullName: z.string().min(3).max(150),
+    profileImage: z.string(),
+})
