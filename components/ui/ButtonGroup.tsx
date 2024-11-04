@@ -13,7 +13,7 @@ const ButtonGroup = ({className, children} : navigationProps) => {
     const totalButtons = Children.count(children);
   return (
     <div className={cn("flex w-full", className)}>
-        {children.map((child, index) => {
+        {Children.map(children,(child, index) => {
             const isFirstItem = index === 0;
             const isLastItem = index === totalButtons -1;
 

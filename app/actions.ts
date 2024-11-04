@@ -3,7 +3,7 @@
 import prisma from "./lib/db";
 import { requireUser } from "./lib/hooks";
 import { parseWithZod } from "@conform-to/zod"
-import { eventTypeSchema, onboardingSchema, onboardingSchemaValidation, settingsSchema } from "./lib/zodSchemas";
+import { eventTypeSchema, EventTypeServerSchema, onboardingSchemaValidation, settingsSchema } from "./lib/zodSchemas";
 import { redirect } from "next/navigation";
 import { revalidatePath } from "next/cache";
 import { nylas } from "./lib/nylas";
@@ -272,3 +272,97 @@ export async function cancelMeetingAction( formData: FormData){
     revalidatePath("/dashboard/meetings");
     
 }
+
+export async function EditEventTypeAction(prevState: any, formData: FormData) {
+    
+    const session = await requireUser();
+  
+    const submission = await parseWithZod(formData, {
+        schema: EventTypeServerSchema({
+          async isUrlUnique() {
+            const data = await prisma.eventType.findFirst({
+              where: {
+                userId: session.user?.id,
+                url: formData.get("url") as string,
+              },
+            });
+            return !data;
+          },
+        }),
+    
+        async: true,
+      });
+
+    console.log(submission.reply());
+  
+    if (submission.status !== "success") {
+      return submission.reply();
+    }
+  
+    const data = await prisma.eventType.update({
+      where: {
+        id: formData.get("id") as string,
+        userId: session.user?.id,
+      },
+      data: {
+        title: submission.value.title,
+        duration: submission.value.duration,
+        url: submission.value.url,
+        description: submission.value.description,
+        videoCallSoftware: submission.value.videoCallSoftware,
+      },
+    });
+    console.log(data);
+  
+    return redirect("/dashboard");
+  }
+
+  export async function DeleteEventTypeAction(formData: FormData) {
+    const session = await requireUser();
+  
+    const data = await prisma.eventType.delete({
+      where: {
+        id: formData.get("id") as string,
+        userId: session.user?.id as string,
+      },
+    });
+  
+    return redirect("/dashboard");
+  }
+
+  export async function updateEventTypeStatusAction(
+    prevState: any,
+    {
+      eventTypeId,
+      isChecked,
+    }: {
+      eventTypeId: string;
+      isChecked: boolean;
+    }
+  ) {
+    try {
+      const session = await requireUser();
+  
+      const data = await prisma.eventType.update({
+        where: {
+          id: eventTypeId,
+          userId: session.user?.id as string,
+        },
+        data: {
+          active: isChecked,
+        },
+      });
+  
+      revalidatePath(`/dashboard`);
+      
+      return {
+        status: "success",
+        message: "Event Type Status updated successfully !!",
+      };
+    } catch (error) {
+      return {
+        status: "error",
+        message: "Something went wrong",
+      };
+    }
+  }
