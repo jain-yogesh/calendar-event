@@ -1,7 +1,7 @@
 import { Button } from "@/components/ui/button"
 import { Dialog, DialogContent, DialogHeader, DialogTrigger } from "@/components/ui/dialog"
 import Image from "next/image";
-import Logo from "@/public/logo.png"
+import Logo from "../../public/logo.png"
 import { signIn } from "../lib/auth";
 import { GitHubAuthButton, GooleAuthButton } from "./SubmitButtons";
 
