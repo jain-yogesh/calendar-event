@@ -170,7 +170,7 @@ export async function CreateEventTypeAction(prevState: any, formData : FormData)
             duration: submission.value.duration,
             url: submission.value.url,
             description: submission.value.description,
-            videoCallSoftware: submission.value.videocallSoftware,
+            videoCallSoftware: submission.value.videoCallSoftware,
             userId: session.user?.id,
         },
     });
@@ -229,8 +229,8 @@ export async function CreateMeetingAction(formData : FormData) {
             },
             participants: [
                 {
-                    name: formData.get("name"),
-                    email: formData.get("email"),
+                    name: formData.get("name") as string,
+                    email: formData.get("email") as string,
                     status: 'yes',
                 },
             ],

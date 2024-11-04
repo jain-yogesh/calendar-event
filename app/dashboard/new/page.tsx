@@ -104,7 +104,7 @@ const NewEventRoute = () => {
 
                     <div className="grid gap-y-2">
                         <Label>View Call Provider</Label>
-                        <Input type="hidden" name={fields.videocallSoftware.name} value={activePlatform} />
+                        <Input type="hidden" name={fields.videoCallSoftware.name} value={activePlatform} />
                         <ButtonGroup>
                             <Button 
                             type="button"
@@ -122,7 +122,7 @@ const NewEventRoute = () => {
                             className="w-full"
                             variant={activePlatform === "Microsoft Teams" ? "secondary" : "outline"} >Microsoft Teams</Button>
                         </ButtonGroup>
-                        <p className="text-red-500 text-sm">{fields.videocallSoftware.errors}</p>
+                        <p className="text-red-500 text-sm">{fields.videoCallSoftware.errors}</p>
                     </div>
                 </CardContent>
                 <CardFooter className="w-full flex justify-between">

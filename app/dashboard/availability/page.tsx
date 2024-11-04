@@ -41,7 +41,8 @@ const AvailabilityRoute = async () => {
         </CardHeader>
         <form action={updateAvailabilityAction}>
             <CardContent className="flex flex-col gap-y-4">
-                {data.map((item) => (
+              {/*@ts-ignore*/}
+              {data.map((item) => (
                   <div key={item.id} className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 items-center gap-4">
                     <Input type="hidden" name={`id-${item.id}`} value={item.id} />
                     <div className="flex items-center gap-x-3">
