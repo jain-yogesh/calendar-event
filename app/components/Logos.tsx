@@ -1,7 +1,7 @@
 import Image from "next/image"
-import NylasLogo from "../../public/nylas-logo.png";
-import NextjsLogo from "../../public/nextjs-logo.svg";
-import VercelLogo from "../../public/vercel.svg";
+import NylasLogo from "@/public/nylas-logo.png";
+import NextjsLogo from "@/public/nextjs-logo.svg";
+import VercelLogo from "@/public/vercel.svg";
 
 const Logos = () => {
   return (

@@ -1,6 +1,6 @@
 import Image from "next/image"
 import AuthModal from "./AuthModal"
-import HeroImage from "../../public/better.png"
+import HeroImage from "@/public/better.png"
 
 const Hero = () => {
   return (
