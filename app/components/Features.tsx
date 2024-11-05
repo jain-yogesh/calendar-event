@@ -33,7 +33,7 @@ const Features = () => {
             <h1 className="mt-2 text-3xl font-bold tracking-tight sm:text-4xl">
                 Schedule meetings in minutes!
             </h1>
-            <p className="mt-6 text-base leading-snug text-muted-foreground">
+            <p className="mt-6 text-base leading-snug text-muted-foreground text-justify">
                 With CalenderEvent you can schedule meetings in minutes. We make it easy for you to schedule meetings in minutes. The meetings are very fast and easy to schedule.
             </p>
         </div>
