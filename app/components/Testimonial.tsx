@@ -43,7 +43,7 @@ const Testimonial = () => {
             </p>
             <footer className="mt-6">
                 <p className="font-semibold">Johncena</p>
-                <p className="text-sm text-muted-foreground">Prorammer | YouTuber</p>
+                <p className="text-sm text-muted-foreground">Programmer | YouTuber</p>
             </footer>
         </blockquote>
     </div>
